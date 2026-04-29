@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Results | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/student_results.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="{% url 'dashboard' %}" class="btn-back">
+            &larr; Back to Dashboard
+        </a>
+
+        <div class="page-header">
+            <h2>Academic Results</h2>
+        </div>
+
+        <div class="summary-grid">
+            
+            <div class="summary-card">
+                <div class="summary-icon icon-blue">🎯</div>
+                <div class="summary-info">
+                    <h3>Total Score</h3>
+                    <p>{{ total_obtained }} <span style="font-size: 1rem; color: #6B7280; font-weight: normal;">/ {{ total_possible }}</span></p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon icon-purple">📈</div>
+                <div class="summary-info">
+                    <h3>Percentage</h3>
+                    <p>{{ percentage }}%</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon icon-gold">🎓</div>
+                <div class="summary-info">
+                    <h3>Overall Status</h3>
+                    <p class="{% if overall_status|lower == 'pass' %}status-text-pass{% elif overall_status|lower == 'fail' %}status-text-fail{% endif %}">
+                        {{ overall_status|upper }}
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="table-container">
+            <h3 class="table-title">Subject Breakdown</h3>
+            
+            <div class="table-responsive">
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Marks Obtained</th>
+                            <th>Total Possible</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for result in results %}
+                            <tr>
+                                <td><strong>{{ result.subject }}</strong></td>
+                                <td class="marks-cell">{{ result.marks }}</td>
+                                <td>{{ result.total_marks }}</td>
+                                <td>
+                                    <span class="status-badge 
+                                        {% if result.subject_status|lower == 'pass' %}
+                                            status-pass
+                                        {% else %}
+                                            status-fail
+                                        {% endif %}">
+                                        {{ result.subject_status }}
+                                    </span>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="empty-state">
+                                    No exam results have been posted yet.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

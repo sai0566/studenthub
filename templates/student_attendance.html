@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Attendance | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/student_attendance.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="{% url 'dashboard' %}" class="btn-back">
+            &larr; Back to Dashboard
+        </a>
+
+        <div class="page-header">
+            <h2>My Attendance Overview</h2>
+        </div>
+
+        <div class="summary-grid">
+            
+            <div class="summary-card">
+                <div class="summary-icon icon-blue">📅</div>
+                <div class="summary-info">
+                    <h3>Total Classes</h3>
+                    <p>{{ total_days }}</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon icon-green">✅</div>
+                <div class="summary-info">
+                    <h3>Days Present</h3>
+                    <p>{{ present_days }}</p>
+                </div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-icon icon-purple">📊</div>
+                <div class="summary-info">
+                    <h3>Attendance %</h3>
+                    <p>{{ percentage }}%</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="table-container">
+            <h3 class="table-title">Daily Records</h3>
+            
+            <div class="table-responsive">
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in records %}
+                            <tr>
+                                <td><strong>{{ record.date }}</strong></td>
+                                <td>
+                                    <span class="status-badge 
+                                        {% if record.status|lower == 'present' %}
+                                            status-present
+                                        {% else %}
+                                            status-absent
+                                        {% endif %}">
+                                        {{ record.status }}
+                                    </span>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="2" class="empty-state">
+                                    No attendance records have been posted yet.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

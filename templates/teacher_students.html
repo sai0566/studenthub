@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Students | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/my_students.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        <a href="{% url 'dashboard' %}" class="btn-back">
+            &larr; Back to Dashboard
+        </a>
+        
+        <div class="page-header">
+            <h2>My Students</h2>
+            <form method="GET" class="search-form">
+                <input type="text" name="q" class="search-input" placeholder="Search by username..." value="{{ request.GET.q }}">
+                <button type="submit" class="btn-search">Search</button>
+            </form>
+        </div>
+
+        <div class="table-responsive">
+            <table class="student-table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Roll Number</th>
+                        <th>Class</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                        <tr>
+                            <td><strong>{{ student.user.username|title }}</strong></td>
+                            <td>{{ student.roll_number }}</td>
+                            <td>{{ student.class_name }}</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="{% url 'edit_student' student.id %}" class="btn-action btn-edit">Edit</a>
+                                    <a href="{% url 'delete_student' student.id %}" class="btn-action btn-delete">Delete</a>
+                                    <a href="{% url 'add_result' student.id %}" class="btn-action btn-marks">+ Marks</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="empty-state">
+                                No students found. Try adjusting your search.
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if students.has_other_pages %}
+            <div class="pagination">
+                
+                {% if students.has_previous %}
+                    <a href="?page={{ students.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo; Prev</a>
+                {% else %}
+                    <span class="disabled">&laquo; Prev</span>
+                {% endif %}
+
+                {% for i in students.paginator.page_range %}
+                    {% if students.number == i %}
+                        <span class="current">{{ i }}</span>
+                    {% else %}
+                        <a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if students.has_next %}
+                    <a href="?page={{ students.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next &raquo;</a>
+                {% else %}
+                    <span class="disabled">Next &raquo;</span>
+                {% endif %}
+                
+            </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>

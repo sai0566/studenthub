@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard | Academy Management</title>
+    
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+</head>
+<body>
+
+    <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+        
+        <div class="dashboard-header">
+            <h1>Welcome back, {{ request.user.username|title }}!</h1>
+            <p>Here is your daily overview and quick access to your classroom tools.</p>
+        </div>
+
+        <h2 class="section-title">Quick Actions</h2>
+
+        <div class="quick-actions">
+            
+            <a href="/students/my-students/" class="action-card">
+                <div class="card-icon">👥</div>
+                <h3>My Students</h3>
+                <p>View your assigned students, access their profiles, and check their overall performance.</p>
+            </a>
+
+            <a href="{% url 'mark_attendance' %}" class="action-card">
+                <div class="card-icon">📝</div>
+                <h3>Mark Attendance</h3>
+                <p>Quickly record and update daily attendance for your current classes.</p>
+            </a>
+
+            <a href="{% url 'logout' %}" class="action-card card-logout">
+                <div class="card-icon" style="background-color: #FEF3C7;">🚪</div>
+                <h3 style="color: #D97706;">Secure Logout</h3>
+                <p>Safely sign out of your teacher portal when you are finished.</p>
+            </a>
+
+        </div>
+    </div>
+
+</body>
+</html>

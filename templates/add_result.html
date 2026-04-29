@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Marks | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/add_marks.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="{% url 'teacher_students' %}" class="btn-back">
+            &larr; Back to Student List
+        </a>
+
+        <div class="form-card">
+            
+            <div class="form-header">
+                <h2>Enter Academic Marks</h2>
+            </div>
+
+            <div class="student-banner">
+                <strong>Student: {{ student.user.username|title }}</strong>
+                <span>Roll Number: {{ student.roll_number }}</span>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                
+                {{ form.as_p }}
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-save">Save Marks</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

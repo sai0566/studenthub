@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/student_form.css' %}">
+</head>
+<body>
+
+    <div class="form-card">
+        <div class="form-header">
+            <h2>{{ title }}</h2>
+            {% if student %}
+                <p style="color: #6B7280; font-size: 0.9rem; margin-top: 0.25rem;">Updating records for: {{ student.user.username }}</p>
+            {% endif %}
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <div class="form-actions">
+                <a href="{% url 'teacher_students' %}" class="btn-cancel">Cancel</a>
+                <button type="submit" class="btn-save">Save Changes</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

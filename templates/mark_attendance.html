@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/mark_attendance.css' %}">
+</head>
+<body>
+
+    <div class="container">
+        
+        <a href="{% url 'dashboard' %}" class="btn-back">
+            &larr; Back to Dashboard
+        </a>
+
+        <div class="page-header">
+            <h2>Mark Daily Attendance</h2>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="date-selector">
+                <label for="attendance_date">Select Date:</label>
+                <input type="date" id="attendance_date" name="date" value="{{ today|date:'Y-m-d' }}" required>
+            </div>
+
+            <div class="table-responsive">
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Roll Number</th>
+                            <th>Attendance Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for student in students %}
+                            <tr>
+                                <td><strong>{{ student.user.username|title }}</strong></td>
+                                <td>{{ student.roll_number }}</td>
+                                <td>
+                                    <select name="status_{{ student.id }}" class="status-select" required>
+                                        <option value="" disabled selected>Select Status</option>
+                                        <option value="present">Present</option>
+                                        <option value="absent">Absent</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3" class="empty-state">
+                                    No students assigned to your class yet.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="submit" class="btn-submit">Save Attendance Records</button>
+            
+        </form>
+
+    </div>
+
+</body>
+</html>

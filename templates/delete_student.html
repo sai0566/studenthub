@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Student | Academy Management</title>
+    <link rel="stylesheet" href="{% static 'css/delete_student.css' %}">
+</head>
+<body>
+
+    <div class="warning-card">
+        <div class="warning-icon">⚠️</div>
+        <h2>Confirm Deletion</h2>
+        
+        <p>Are you absolutely sure you want to remove <span class="student-name">{{ student.user.username|title }}</span> from the system? This action cannot be undone and will erase all associated records.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="action-buttons">
+                <a href="{% url 'teacher_students' %}" class="btn btn-cancel">Cancel</a>
+                <button type="submit" class="btn btn-delete">Yes, Delete Student</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
