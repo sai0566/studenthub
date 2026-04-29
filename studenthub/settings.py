@@ -21,6 +21,13 @@ STATIC_DIR=BASE_DIR/'static'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
+import os
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'dev-secret-key')
 
@@ -129,8 +136,3 @@ AUTH_USER_MODEL='accounts.CustomUser'
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-import os
-import dj_database_url
-from dotenv import load_dotenv
-
-load_dotenv()
