@@ -1,0 +1,137 @@
+/* static/css/login.css */
+/* Reset and basic typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    /* A soft, professional blue-gray background */
+    background-color: #f0f4f8; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+/* The main login container */
+.login-container {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 400px;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    margin: 1rem;
+}
+
+/* School Branding elements */
+.school-branding {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.school-logo-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #1E3A8A; /* Deep Navy Blue */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1rem auto;
+}
+
+.school-branding h2 {
+    color: #1E3A8A;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.school-branding p {
+    color: #6B7280;
+    font-size: 0.9rem;
+}
+
+/* Form Styling */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.form-group input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button Styling */
+.submit-btn {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+    padding: 0.875rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+    background-color: #152c69;
+}
+
+/* Django Messages/Errors */
+.message-container {
+    margin-bottom: 1.5rem;
+}
+
+.alert-error {
+    background-color: #FEF2F2;
+    color: #DC2626;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border-left: 4px solid #DC2626;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+    
+    .school-branding h2 {
+        font-size: 1.25rem;
+    }
+}

@@ -1,0 +1,105 @@
+:root {
+    --primary-blue: #1E3A8A;
+    --secondary-blue: #3B82F6;
+    --bg-light: #F0F4F8;
+    --surface-white: #FFFFFF;
+    --text-main: #1F2937;
+    --border-color: #E5E7EB;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.form-card {
+    background: var(--surface-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-header {
+    border-bottom: 2px solid var(--bg-light);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+
+.form-header h2 { color: var(--primary-blue); font-size: 1.5rem; }
+
+/* Styling standard Django form outputs */
+.form-card p {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+}
+
+.form-card label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-card input[type="text"], 
+.form-card input[type="email"], 
+.form-card input[type="number"], 
+.form-card select, 
+.form-card textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-card textarea {
+    height: 50px;      /* Makes the initial height much smaller */
+    resize: vertical;      /* Allows the user to drag the corner to make it bigger if they need to */
+}
+.form-card input:focus, .form-card select:focus {
+    outline: none;
+    border-color: var(--secondary-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-save {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+}
+
+.btn-cancel {
+    background: white;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    flex: 1;
+}
+
+.btn-save:hover { background: #152c69; }
+.btn-cancel:hover { background: var(--bg-light); }

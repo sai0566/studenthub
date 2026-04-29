@@ -1,0 +1,196 @@
+/* static/css/student_results.css */
+
+/* --- Theme Variables & Reset --- */
+:root {
+    --primary-blue: #1E3A8A;
+    --secondary-blue: #3B82F6;
+    --success-green: #10B981;
+    --danger-red: #EF4444;
+    --warning-gold: #F59E0B;
+    --bg-light: #F0F4F8;
+    --surface-white: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --border-color: #E5E7EB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --- Navigation & Header --- */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+}
+
+.btn-back:hover {
+    color: var(--primary-blue);
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h2 {
+    color: var(--primary-blue);
+    font-size: 2rem;
+}
+
+/* --- Summary Cards --- */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.summary-card {
+    background: var(--surface-white);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.summary-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+}
+
+/* Different icon background colors */
+.icon-blue { background-color: #E0F2FE; color: #0284C7; }
+.icon-purple { background-color: #F3E8FF; color: #9333EA; }
+.icon-gold { background-color: #FEF3C7; color: #D97706; }
+
+.summary-info h3 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.summary-info p {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+/* Make the overall status stand out based on content */
+.status-text-pass { color: var(--success-green) !important; }
+.status-text-fail { color: var(--danger-red) !important; }
+
+/* --- Responsive Table --- */
+.table-container {
+    background: var(--surface-white);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    border: 1px solid var(--border-color);
+}
+
+.table-title {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.results-table th {
+    background-color: #F9FAFB;
+    color: var(--text-muted);
+    font-weight: 600;
+    padding: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.results-table td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.results-table tbody tr:hover {
+    background-color: #F9FAFB;
+}
+
+/* Highlight the marks column */
+.marks-cell {
+    font-weight: bold;
+    color: var(--primary-blue);
+    font-size: 1.05rem;
+}
+
+/* --- Status Badges --- */
+.status-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+.status-pass {
+    background-color: #DCFCE7;
+    color: #166534;
+}
+
+.status-fail {
+    background-color: #FEE2E2;
+    color: #991B1B;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem !important;
+    color: var(--text-muted);
+}
